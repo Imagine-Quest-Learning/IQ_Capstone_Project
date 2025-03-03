@@ -75,3 +75,6 @@ crashlytics-build.properties
 
 # For Macs (DS_Store just helps in displaying folder info for Mac systems)
 *.DS_Store
+
+#For VsCode users
+*.vscode
