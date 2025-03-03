@@ -19,6 +19,7 @@ public class AstroidScript : MonoBehaviour
         //once the astroid has moved "off screen"
         if (transform.position.x < deadZone)
         {
+            Debug.Log("Astroid deleted.");
             Destroy(gameObject); //destroy the gameObject that holds this script
         }
     }
