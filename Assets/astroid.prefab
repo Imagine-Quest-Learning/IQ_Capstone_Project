@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  fastestSpeed: 2
+  slowestSpeed: 10
   deadZone: -15
 --- !u!50 &-5906797215651478248
 Rigidbody2D:

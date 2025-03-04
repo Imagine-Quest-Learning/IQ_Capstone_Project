@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Logic
   - Astroid
+  - AstroidSpawner
   layers:
   - Default
   - TransparentFX
