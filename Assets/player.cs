@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int baseHealth = 4;
-    public int currentHealth;
-    public HealthBar healthBar;
+    public GameObject[] hearts;
+    public int life;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentHealth = baseHealth;
-		healthBar.SetMaxHealth(baseHealth);
-    }
-
+ 
     // Update is called once per frame
     void Update()
     {
@@ -22,12 +15,19 @@ public class Player : MonoBehaviour
 		{
 			TakeDamage(1);
 		}
+
+        if (life<1){
+            Destroy(hearts[0].gameObject);
+            //set game over
+        }else if (life<2){
+            Destroy(hearts[1].gameObject);
+        }else if (life<3){
+            Destroy(hearts[2].gameObject);
+        }
     }
 
     void TakeDamage(int damage)
 	{
-		currentHealth -= damage;
-
-		healthBar.SetHealth(currentHealth);
+		life -= damage;
 	}
 }
