@@ -1,6 +1,6 @@
-# IQ_Capstone_Project
+# Addition Game - Castle Connon Siege
 
-An educational game platform designed to enhance classroom engagement for students. This project focuses on creating modular, database-driven games that dynamically adapt to various educational topics such as mathematics. Teachers can customize content, track student progress, and facilitate collaborative learning through gamification. The platform integrates engaging storylines, a flexible game skeleton, and interactive challenges to make learning fun and impactful.
+This project showcases a 2D cannonball trajectory simulation using Unity's physics engine. The goal is to simulate realistic projectile motion, allowing users to adjust the angle and power of the shot and visualize the predicted trajectory with white dots before firing. The game accurately follows real-world physics principles, including gravity, velocity, and collision detection.
 
 
 ### This repository will include all work needed to submit for our Capstone.
