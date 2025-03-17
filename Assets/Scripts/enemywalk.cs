@@ -2,42 +2,54 @@ using UnityEngine;
 
 public class enemywalk : MonoBehaviour
 {
-    [Header("Movement")]
-    public float speed = 3f;      // Movement speed of the enemy
-    private Rigidbody2D rigid;    // Reference to the Rigidbody2D component
-
-    [Header("Ground Check")]
-    public LayerMask groundLayer;         // Layer assigned as "Ground" in the Inspector
-    public Transform groundCheck;         // A child object at the enemy's feet for ground detection
-    public float checkRadius = 0.2f;      // Radius of the ground check area
-    private bool isGrounded;              // Boolean to check if the enemy is on the ground
+    public GameObject pointA;
+    public GameObject pointB;
+    private Rigidbody2D rb;
+    private Animator anim;
+    private Transform currentPoint;
+    public float speed;
 
     void Start()
     {
-        // Get the Rigidbody2D component attached to the enemy
-        rigid = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        currentPoint = pointB.transform;
+        anim.SetBool("isRunning", true);
     }
 
     void Update()
     {
-        // Check if the enemy is on the ground every frame
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        Vector2 movement = currentPoint.position - transform.position;
+
+        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f)
+        {
+            if (currentPoint == pointB.transform)
+            {
+                currentPoint = pointA.transform;
+            }
+            else
+            {
+                currentPoint = pointB.transform;
+            }
+            flip();
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(speed * Mathf.Sign(movement.x), 0);
+        }
     }
 
-    void FixedUpdate()
+    void flip()
     {
-        // Determine the forward direction based on the enemy's scale
-        Vector3 front = new Vector3(-1, 0, 0);
+        Vector3 localScale = transform.localScale;
+        localScale.x = -localScale.x;
+        transform.localScale = localScale;
+    }
 
-        if (transform.localScale.x > 0)
-        {
-            front = new Vector3(1, 0, 0);
-        }
-
-        // Move the enemy horizontally only when it's on the ground
-        if (isGrounded)
-        {
-            rigid.linearVelocity = new Vector2(front.x * speed, rigid.linearVelocity.y);
-        }
+    void OnDrawGizmos()
+    {
+        if (pointA != null) Gizmos.DrawWireSphere(pointA.transform.position, 0.5f);
+        if (pointB != null) Gizmos.DrawWireSphere(pointB.transform.position, 0.5f);
+        if (pointA != null && pointB != null) Gizmos.DrawLine(pointA.transform.position, pointB.transform.position);
     }
 }
