@@ -5,15 +5,18 @@ TagManager:
   serializedVersion: 3
   tags:
   - Weapon
+  - Default
+  - Magic
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Magic
+  - Enemy
   - 
   - 
   - 
