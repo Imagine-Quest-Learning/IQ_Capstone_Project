@@ -59,4 +59,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Unity-Code-Coverage
-          path: ${{ github.workspace }}/PlayMode-artifacts/CoverageResults
+          path: ${{ github.workspace }}/CodeCoverage/IQ_Capstone_Project-opencov/PlayMode
