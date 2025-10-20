@@ -48,4 +48,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Unity-Test-Results
-          path: ${{ github.workspace }}/EditMode-artifacts/editmode-results.xml
+          path: ${{ github.workspace }}/PlayMode-artifacts/playmode-results.xml

@@ -6,7 +6,7 @@ using System.Collections;
 /*
     File: GameManagerTests
 
-    Description: Holds PLAYMODE unit tests for the Player.cs
+    Description: Holds PLAYMODE unit tests for the GameManager.cs
     
     Written By: Jaiden Clee [2025]
 */
