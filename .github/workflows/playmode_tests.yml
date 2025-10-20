@@ -42,6 +42,10 @@ jobs:
           artifactsPath: ${{ matrix.testMode }}-artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           checkName: ${{ matrix.testMode }} Test Results
+          customParameters: >
+            -enabledCodeCoverage
+            -coverageResultsPath "${{ github.workspace }}/PlayMode-artifacts/CoverageResults"
+            -coverageOptions "EnableEditorCoverage,IncludeTestAssemblies,ClassCoverage"
 
       # 3. Upload raw test results as artifact (optional)
       - name: Upload Test Results Artifact
@@ -49,3 +53,10 @@ jobs:
         with:
           name: Unity-Test-Results
           path: ${{ github.workspace }}/PlayMode-artifacts/playmode-results.xml
+
+      # 4. Upload code coverage results as an artifact
+      - name: Upload Coverage Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Unity-Code-Coverage
+          path: ${{ github.workspace }}/PlayMode-artifacts/CoverageResults
