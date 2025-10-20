@@ -7,6 +7,8 @@ using System.Collections;
     File: PlayerTests
 
     Description: Holds PLAYMODE unit tests for the Player.cs
+                 Note: Player.cs needs playmode tests because it has MonoBehaviour
+                       (aka it needs the game to load to run a test, it's not just logic we can test seperately)
 
     Written By: Jaiden Clee [2025]
 */
