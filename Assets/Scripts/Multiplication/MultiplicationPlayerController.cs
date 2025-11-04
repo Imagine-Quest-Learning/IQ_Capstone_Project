@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class MultiplicationPlayerController : MonoBehaviour
 {
@@ -18,11 +19,41 @@ public class MultiplicationPlayerController : MonoBehaviour
     private float currentRotation = 0f;
     private const float maxRotation = 80f;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        sceneManager = GameObject.FindObjectOfType<MultiplicationSceneManager>();
+        yield return null;
+
+        sceneManager = FindObjectOfType<MultiplicationSceneManager>();
+
+        if (player == null && GameManager.Instance != null)
+        {
+            if (GameManager.Instance.persistentObjects.Length > 1 && GameManager.Instance.persistentObjects[1] != null)
+            {
+                player = GameManager.Instance.persistentObjects[1].GetComponent<Player>();
+            }
+        }
+
         if (player == null)
-            player = GameObject.FindObjectOfType<Player>();
+            player = FindObjectOfType<Player>(true);
+
+        if (player != null)
+        {
+            if (leftFirePoint == null)
+            {
+                GameObject left = new GameObject("LeftFirePoint");
+                left.transform.SetParent(player.transform);
+                left.transform.localPosition = new Vector3(-0.069f, 0.015f, 0f);
+                leftFirePoint = left.transform;
+            }
+
+            if (rightFirePoint == null)
+            {
+                GameObject right = new GameObject("RightFirePoint");
+                right.transform.SetParent(player.transform);
+                right.transform.localPosition = new Vector3(0.088f, 0.015f, 0f);
+                rightFirePoint = right.transform;
+            }
+        }
     }
 
     private void Update()
@@ -80,9 +111,18 @@ public class MultiplicationPlayerController : MonoBehaviour
             GameObject magic = Instantiate(magicPrefab, firePoint.position, firePoint.rotation);
             Magic magicScript = magic.GetComponent<Magic>();
 
-            Vector2 shootDirection = firePoint.right;
+            Vector2 shootDirection;
+
+            if (firePoint == leftFirePoint)
+                shootDirection = -firePoint.right;
+            else
+                shootDirection = firePoint.right;
+
             magicScript.SetDirection(shootDirection);
+
+            nextFireTime = Time.time + fireRate;
         }
     }
+
 
 }
