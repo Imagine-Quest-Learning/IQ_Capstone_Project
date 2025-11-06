@@ -99,7 +99,16 @@ public class MultiplicationPlayerController : MonoBehaviour
     {
         hasWand = true;
         movementFrozen = true;
-        Debug.Log("Wand picked up! Movement frozen.");
+    }
+
+    public void RemoveWand()
+    {
+        hasWand = false;
+        movementFrozen = false;
+        currentRotation = 0f;
+
+        if (player != null)
+            player.transform.rotation = Quaternion.identity;
     }
 
     public bool HasWand => hasWand;

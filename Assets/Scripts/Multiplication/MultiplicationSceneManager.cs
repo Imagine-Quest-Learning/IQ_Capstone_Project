@@ -56,7 +56,6 @@ public class MultiplicationSceneManager : MonoBehaviour
                 StopCoroutine(mathTimerCoroutine);
 
             mathTimerCoroutine = StartCoroutine(MathQuestionTimer());
-            Debug.Log("Math question timer started.");
         }
     }
 
@@ -77,10 +76,15 @@ public class MultiplicationSceneManager : MonoBehaviour
 
     void ShowMathQuestion()
     {
+        if (isMathActive) return;
+
+        isMathActive = true;
         mathPanel.SetActive(true);
         GenerateMathProblem();
+        answerInput.text = "";
         answerInput.Select();
     }
+
 
     void GenerateMathProblem()
     {
@@ -138,11 +142,9 @@ public class MultiplicationSceneManager : MonoBehaviour
     {
         // Player loses heart when hit by enemy
         playerHearts--;
-        Debug.Log("HIT!");
 
         if (playerHearts <= 0)
         {
-            Debug.Log("G.O.");
             GameOver();
         }
         UpdateUI();
@@ -153,19 +155,17 @@ public class MultiplicationSceneManager : MonoBehaviour
         Time.timeScale = 1;
         answerInput.text = "";
         mathPanel.SetActive(false);
-        //gameOverPanel.SetActive(false);
         isMathActive = false;
         UpdateUI();
     }
 
     void GameOver()
     {
-        //finalScore.text = scoreText.text;
+        ClearAllEnemies();
         mathPanel.SetActive(false);
-        //gameOverPanel.SetActive(true);
         isMathActive = false;
-        //Time.timeScale = 0;
         gameActive = false;
+        FindObjectOfType<MultiplicationPlayerController>().RemoveWand();
     }
 
     void UpdateUI()
@@ -204,6 +204,15 @@ public class MultiplicationSceneManager : MonoBehaviour
     {
         Vector3 spawnPosition = new Vector3(0f, 0f, 0f);
         Instantiate(wandPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    public void ClearAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 
     public bool isGameActive => gameActive;

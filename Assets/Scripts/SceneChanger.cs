@@ -46,6 +46,12 @@ public class SceneChanger : MonoBehaviour
     */
     IEnumerator DelayFade()
     {
+        // Reset player rotation
+        if (player != null)
+        {
+            player.rotation = Quaternion.identity;
+        }
+
         yield return new WaitForSeconds(fadeTime);
         player.position = newPlayerPosition;
 
