@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /*
     File: GameManager
@@ -12,18 +13,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Create globally acessible reference to single GameManager Instance
-    //      Other scripts use GameManager.Instance to access it 
     public static GameManager Instance;
 
     // Array to store objects that should not be destroyed when loading new scene
     //      Filled from Unity Inspector
     public GameObject[] persistentObjects;
 
-    /*
-        Awake()
-        - Runs before Start()
-        - Used to control intitialization and prevent duplicates
+    /* HashSet to store completedRooms by SceneName
+        - HashSet = faster lookups
     */
+    public HashSet<string> completedRooms = new HashSet<string>();
+
     private void Awake()
     {
         // If there's already a GameManager Instance destroy it 
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         - Destroys all its linked persistent objects and then itself 
     */
     private void CleanUpAndDestroy()
-    {   
+    {
         if (persistentObjects != null)
         {
             foreach (GameObject obj in persistentObjects)
@@ -74,6 +74,17 @@ public class GameManager : MonoBehaviour
             }
         }
         Destroy(gameObject);
+    }
+
+    //PUBLIC METHODS FOR OTHER SCRIPTS TO USE BELOW
+    public void MarkRoomComplete(string sceneName)
+    {
+        completedRooms.Add(sceneName);
+    }
+    
+    public bool IsRoomComplete(string sceneName)
+    {
+        return completedRooms.Contains(sceneName);
     }
 }
 

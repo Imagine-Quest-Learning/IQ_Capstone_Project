@@ -5776,7 +5776,7 @@ MonoBehaviour:
   sceneToLoad: Subtraction
   fadeAnimation: {fileID: 468182531}
   fadeTime: 1
-  newPlayerPosition: {x: -0.005, y: -0.517}
+  newPlayerPosition: {x: -0.007, y: -0.764}
   disableSceneLoad: 0
   disableFadeAnimation: 0
 --- !u!61 &1174406488
