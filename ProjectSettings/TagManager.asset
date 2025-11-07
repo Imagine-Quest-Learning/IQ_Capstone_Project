@@ -8,6 +8,8 @@ TagManager:
   - Default
   - Magic
   - Enemy
+  - Bat
+  - ChestPopUp
   layers:
   - Default
   - TransparentFX

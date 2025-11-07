@@ -32,7 +32,7 @@ public class SceneChanger : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //Check if Room is Complete
-            if (GameManager.Instance.IsRoomComplete(sceneToLoad))
+            if (GameManager.Instance != null && GameManager.Instance.IsRoomComplete(sceneToLoad))
             {
                 Debug.Log($"Room '{sceneToLoad}' is already complete - entry disabled");
                 return;

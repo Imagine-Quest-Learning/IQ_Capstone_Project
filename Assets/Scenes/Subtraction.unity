@@ -2231,7 +2231,7 @@ GameObject:
   - component: {fileID: 264538608}
   m_Layer: 0
   m_Name: ChestPopUp
-  m_TagString: Untagged
+  m_TagString: ChestPopUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5091,6 +5091,57 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &433262563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 433262564}
+  - component: {fileID: 433262565}
+  m_Layer: 0
+  m_Name: BatSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &433262564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433262563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.954, y: 0.167, z: -3.962449}
+  m_LocalScale: {x: 1, y: 1.275, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &433262565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433262563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7ed6d52649042fa84968238946a1a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bat: {fileID: 6984005016432838145, guid: 35631e5007ffe477782d4a823d2f621e, type: 3}
+  spawnRate: 3
+  heightOffset: 0.5
+  globalBatSpeed: 0.5
+  fastestSpeed: 1
+  slowestSpeed: 0.1
+  spawningActive: 0
 --- !u!1 &479432389
 GameObject:
   m_ObjectHideFlags: 0
@@ -7415,6 +7466,7 @@ GameObject:
   - component: {fileID: 1244363053}
   - component: {fileID: 1244363052}
   - component: {fileID: 1244363051}
+  - component: {fileID: 1244363054}
   m_Layer: 0
   m_Name: OpenMeButton
   m_TagString: Untagged
@@ -7486,9 +7538,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1992245196}
-        m_TargetAssemblyTypeName: Chest, GameLogic
-        m_MethodName: ClosePopup
+      - m_Target: {fileID: 1950931495}
+        m_TargetAssemblyTypeName: SubtractionGameManager, GameLogic
+        m_MethodName: StartSubtractionGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7536,6 +7588,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244363049}
   m_CullTransparentMesh: 1
+--- !u!114 &1244363054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244363049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7667b298cc8c4ad6b57c914c32c6c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  batSpawner: {fileID: 0}
+  chestPopup: {fileID: 0}
+  chest: {fileID: 0}
 --- !u!1 &1483586431
 GameObject:
   m_ObjectHideFlags: 0
@@ -8004,6 +8071,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1950931494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1950931496}
+  - component: {fileID: 1950931495}
+  m_Layer: 0
+  m_Name: SubtractionGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1950931495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950931494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7667b298cc8c4ad6b57c914c32c6c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  batSpawner: {fileID: 433262565}
+  chestPopup: {fileID: 264538606}
+  chest: {fileID: 1992245196}
+--- !u!4 &1950931496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950931494}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03067914, y: 0.0814685, z: -3.9610193}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1992245195
 GameObject:
   m_ObjectHideFlags: 0
@@ -8036,6 +8150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupUI: {fileID: 264538606}
+  popUpEnabled: 1
 --- !u!61 &1992245197
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8161,3 +8276,5 @@ SceneRoots:
   - {fileID: 1992245199}
   - {fileID: 549233630}
   - {fileID: 1668602836}
+  - {fileID: 433262564}
+  - {fileID: 1950931496}

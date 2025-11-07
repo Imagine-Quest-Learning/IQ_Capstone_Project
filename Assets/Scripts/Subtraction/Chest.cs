@@ -6,15 +6,18 @@ public class Chest : MonoBehaviour
     public GameObject popupUI; //to assign popup panel from unity inspector
     private bool isPlayerNearby = false;
 
+    //Dictates whether or not the popup should work
+    public bool popUpEnabled = true;
+
     void Start()
-    {
+    {   
         popupUI?.SetActive(false); //keep popup hidden if not null
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Trigger Entered for PopUp!");
-        if (collision.gameObject.tag == "Player")
+        if (popUpEnabled && collision.gameObject.tag == "Player")
         {
             isPlayerNearby = true;
             if (popupUI != null)
@@ -42,7 +45,17 @@ public class Chest : MonoBehaviour
         Debug.Log("ClosePopup button pressed!");
         if (popupUI != null)
         {
-            popupUI.SetActive(false);   
+            popupUI.SetActive(false);
         }
+    }
+
+    public void DisablePopup()
+    {
+        popUpEnabled = false;
+    }
+    
+    public void EnablePopup()
+    {
+        popUpEnabled = true;
     }
 }
