@@ -117,13 +117,17 @@ public class MultiplicationPlayerController : MonoBehaviour
     {
         if (Time.time >= nextFireTime)
         {
+            Quaternion baseRotation = player.transform.rotation;
             GameObject magic = Instantiate(magicPrefab, firePoint.position, firePoint.rotation);
             Magic magicScript = magic.GetComponent<Magic>();
 
             Vector2 shootDirection;
 
             if (firePoint == leftFirePoint)
+            {
                 shootDirection = -firePoint.right;
+                magic.transform.rotation = baseRotation * Quaternion.Euler(0f, 180f, 0f);
+            }
             else
                 shootDirection = firePoint.right;
 
