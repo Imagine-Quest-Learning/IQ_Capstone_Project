@@ -8116,9 +8116,9 @@ MonoBehaviour:
   losePanel: {fileID: 604940105}
   wandPrefab: {fileID: 5431219193456802906, guid: 50f3143d6407f194ea585685f108242e, type: 3}
   heartSprites:
-  - {fileID: 1697962694}
-  - {fileID: 307994925}
   - {fileID: 162344181}
+  - {fileID: 307994925}
+  - {fileID: 1697962694}
   fullHeart: {fileID: -205270267638800340, guid: 76a27012679f6e3469152f9f863d5bc7, type: 3}
   emptyHeart: {fileID: 3604192591476135790, guid: a8e813a79a477d44ba752ea487056550, type: 3}
   isMathActive: 0
