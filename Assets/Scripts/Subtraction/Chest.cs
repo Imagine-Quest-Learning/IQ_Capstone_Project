@@ -11,7 +11,10 @@ public class Chest : MonoBehaviour
 
     void Start()
     {   
-        popupUI?.SetActive(false); //keep popup hidden if not null
+        if (popupUI != null)
+        {
+            popupUI.SetActive(false); //keep popup hidden if not null 
+        } 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

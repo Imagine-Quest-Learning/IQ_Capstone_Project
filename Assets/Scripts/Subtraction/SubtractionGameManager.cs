@@ -1,14 +1,34 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class SubtractionGameManager : MonoBehaviour
 {
+    public static SubtractionGameManager Instance { get; private set; }
+
+    //VARS TO SET VIA INSPECTOR
     [Header("Bat Game Settings")]
     public BatSpawner batSpawner;
+    public BarrelManager barrelManager;
 
     [Header("UI References")]
     public GameObject chestPopup;
     public Chest chest;
-    
+    public Text questionTextUI;
+    public InputField answerInputField;
+
+    //PRIVATE VARS
+    private int currentCorrectAnswer;
+    private List<GameObject> batsList = new List<GameObject>(); //to keep track of bat spawning order
+    private int correctAnswers = 0;
+    private int totalToWin = 10;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void StartSubtractionGame()
     {
         //disable popup
@@ -17,13 +37,157 @@ public class SubtractionGameManager : MonoBehaviour
             chestPopup.SetActive(false);
             chest.DisablePopup();
         }
-        
+
+        //enable subtraction game ui 
+        if (questionTextUI != null)
+        {
+            questionTextUI.gameObject.SetActive(true);
+        }
+
+        if (answerInputField != null)
+        {
+            answerInputField.gameObject.SetActive(true);
+        }
+
+        //move player to right side of screen and disable movement
+        if (Player.Instance != null)
+        {
+            Vector3 newPosition = new Vector3(1.154f, -0.005f, 0f);
+            Player.Instance.SetPlayerPosition(newPosition);
+            Player.Instance.SetCanMove(false);
+        }
+
+        //initialize barrels
+        barrelManager.Initialize();
+
         //start bat spawner
         if (batSpawner != null)
         {
             batSpawner.StartSpawning();
         }
-        
-        
+
+        //generate first question
+        GenerateNewQuestion();
+
+        //Listen to input field submit
+        if(answerInputField != null)
+        {
+            answerInputField.onEndEdit.AddListener(CheckPlayerAnswer);
+        }
+    }
+
+    private void GenerateNewQuestion()
+    {
+        var (question, answer) = SubtractionUtils.GenerateQuestion();
+        currentCorrectAnswer = answer;
+
+        //set question UI to newly generated question
+        if (questionTextUI != null)
+        {
+            questionTextUI.text = question;
+        }
+    }
+
+    public void OnCorrectAnswer()
+    {
+        correctAnswers++;
+
+        if(correctAnswers >= totalToWin && barrelManager.GetRemainingBarrels()>0)
+        {
+            OnPlayerWon();
+        }
+    }
+
+    //Called when player submits an answer
+    private void CheckPlayerAnswer(string playerInput)
+    {
+        if (SubtractionUtils.IsAnswerCorrect(playerInput, currentCorrectAnswer))
+        {
+            Debug.Log("Correct Answer!");
+            OnCorrectAnswer();
+            DestroyNearestBat();
+        }
+        else
+        {
+            Debug.Log("Incorrect Answer!");
+
+        }
+        //clear input 
+        answerInputField.text = "";
+
+        //generate next question
+        GenerateNewQuestion();
+    }
+
+    //Add a new bat to the queue
+    public void RegisterBat(GameObject newBat)
+    {
+        batsList.Add(newBat);
+    }
+
+    private void DestroyNearestBat()
+    {
+        //destroy the oldest bat in the list
+        if (batsList.Count > 0)
+        {
+            GameObject batToDestroy = batsList[0];
+            batsList.RemoveAt(0);
+            if(batToDestroy != null)
+            {
+                Destroy(batToDestroy);
+            }
+        }
+    }
+
+    public void RemoveBatFromList(GameObject bat)
+    {
+        if(batsList.Contains(bat))
+        {
+            batsList.Remove(bat);
+        }
+    }
+
+    public void OnPlayerWon()
+    {
+        Debug.Log("Player WON!");
+        EndGame();
+    }
+
+    public void OnPlayerLost()
+    {
+        Debug.Log("Player lost :(");
+
+        //only re-enable popup if player lost
+        if (chestPopup != null)
+        {
+            chestPopup.SetActive(false);
+            chest.EnablePopup();
+        }
+
+        EndGame();
+    }
+    
+    public void EndGame()
+    {
+        //allow player to move
+        Player.Instance.SetCanMove(true);
+
+        //disable game components
+        if (questionTextUI != null)
+        {
+            questionTextUI.gameObject.SetActive(false);
+        }
+
+        if (answerInputField != null)
+        {
+            answerInputField.gameObject.SetActive(false);
+        }
+
+        //turn off bat spawner
+        if (batSpawner != null)
+        {
+            batSpawner.StopSpawning();
+        }
+
     }
 }

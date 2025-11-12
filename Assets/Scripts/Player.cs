@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
         - Need this because it is a persistent object (aka part of Don'tDestroyOnLoad)
     */
     public static Player Instance { get; private set; } //reference by Player.Instance....
+    public bool canMove = true; //flag to allow player to move
 
     private void Awake()
     {
@@ -21,8 +22,21 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;
+        
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
         transform.position += movement * Time.deltaTime;
+        
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+    }
+
+    public void SetPlayerPosition(Vector3 position)
+    {
+        transform.position = position;
     }
 
 }

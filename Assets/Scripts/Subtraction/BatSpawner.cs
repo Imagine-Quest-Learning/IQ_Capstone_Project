@@ -10,6 +10,8 @@ public class BatSpawner : MonoBehaviour
     public float fastestSpeed = 1f;
     public float slowestSpeed = 0.1f;
     public bool spawningActive = false;
+    public SubtractionGameManager gameManager;
+
 
     void Start()
     {   
@@ -31,6 +33,13 @@ public class BatSpawner : MonoBehaviour
     public void StopSpawning()
     {
         spawningActive = false;
+
+        //destroy all existing bats
+        GameObject[] bats = GameObject.FindGameObjectsWithTag("Bat");
+        foreach (GameObject bat in bats)
+        {
+            Destroy(bat);
+        }
     }
 
     private IEnumerator SpawnBats()
@@ -54,6 +63,12 @@ public class BatSpawner : MonoBehaviour
             {
                 batScript.setMoveSpeed(globalBatSpeed);
                 Debug.Log($"Bat Speed: {globalBatSpeed}");
+            }
+
+            //register new bat with game manager
+            if (gameManager != null)
+            {
+                gameManager.RegisterBat(newBat);
             }
             Debug.Log($"Bat Spawned!");
 
