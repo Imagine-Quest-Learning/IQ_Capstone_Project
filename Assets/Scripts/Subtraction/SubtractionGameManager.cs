@@ -26,8 +26,8 @@ public class SubtractionGameManager : MonoBehaviour
     //PRIVATE VARS
     private int currentCorrectAnswer;
     private List<GameObject> batsList = new List<GameObject>(); //to keep track of bat spawning order
-    private int correctAnswers = 0;
-    private int totalToWin = 3;
+    private int correctAnswers; //set when game is started (in case player loses and game resets)
+    private int totalToWin; //set when game is started (in case player loses and game resets)
     private bool isWinLosePanelActive = false;
     private float winLosePopupShownTime;
 
@@ -38,7 +38,7 @@ public class SubtractionGameManager : MonoBehaviour
 
     public void Update()
     {
-        if(isWinLosePanelActive && Input.GetKeyDown(KeyCode.Return) && Time.time - winLosePopupShownTime > 2f)
+        if(isWinLosePanelActive && Input.GetKeyDown(KeyCode.Return) && Time.time - winLosePopupShownTime > 1f)
         {
             winLosePopup.SetActive(false);
             isWinLosePanelActive = false;
@@ -47,6 +47,10 @@ public class SubtractionGameManager : MonoBehaviour
 
     public void StartSubtractionGame()
     {
+        //set game counters
+        totalToWin = 15;
+        correctAnswers = 0;
+
         //disable popup
         if (chestPopup != null)
         {
@@ -94,6 +98,7 @@ public class SubtractionGameManager : MonoBehaviour
         //Listen to input field submit
         if (answerInputField != null)
         {
+            answerInputField.onEndEdit.RemoveAllListeners(); //needed if player loses and game restarts
             answerInputField.onEndEdit.AddListener(CheckPlayerAnswer);
         }
     }
@@ -230,7 +235,6 @@ public class SubtractionGameManager : MonoBehaviour
 
     private void ShowWinLosePopup(bool didWin)
     {
-        Debug.Log("Method running");
         if (winLosePopup != null && winLoseTextUI != null)
         {
             winLosePopup.SetActive(true);
@@ -250,10 +254,16 @@ public class SubtractionGameManager : MonoBehaviour
         if (answerInputField != null) answerInputField.gameObject.SetActive(false);
         if (questionsLeftTextUI != null) questionsLeftTextUI.gameObject.SetActive(false);
         if (feedbackTextUI != null) feedbackTextUI.gameObject.SetActive(false);
-        
+
+        //reset some game components
+        answerInputField.text = "";
+        questionsLeftTextUI.text = "";
+        feedbackTextUI.text = "";
 
         //turn off bat spawner
         if (batSpawner != null) batSpawner.StopSpawning();
 
+        //rehide barrels
+        if (barrelManager != null) barrelManager.HideAllBarrels();
     }
 }

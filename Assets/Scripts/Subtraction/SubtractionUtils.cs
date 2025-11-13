@@ -29,6 +29,7 @@ public static class SubtractionUtils
         string question = $"{a} - {b} = ";
         int correctAnswer = a - b;
 
+        Debug.Log($"Current Question: {question}");
         Debug.Log($"Current Correct Answer = {correctAnswer}");
 
         return (question, correctAnswer);

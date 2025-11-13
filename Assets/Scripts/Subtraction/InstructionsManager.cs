@@ -33,7 +33,7 @@ public class InstructionsManager : MonoBehaviour
     private void ShowNextLine()
     {
         if (instructions == null || instructions.Length == 0) return;
-        
+
         if (currentIndex < instructions.Length - 1)
         {
             currentIndex++;
@@ -43,6 +43,7 @@ public class InstructionsManager : MonoBehaviour
         {
             if (gameManager != null)
             {
+                Debug.Log("Start Subtraction Game");
                 gameManager.StartSubtractionGame();
             }
             gameObject.SetActive(false);
