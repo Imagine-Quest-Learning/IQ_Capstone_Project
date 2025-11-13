@@ -5485,11 +5485,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bat: {fileID: 6984005016432838145, guid: 35631e5007ffe477782d4a823d2f621e, type: 3}
-  spawnRate: 6
+  spawnRate: 8
+  fatestSpawnRate: 4
   heightOffset: 0.5
-  globalBatSpeed: 0.3
-  fastestSpeed: 1
-  slowestSpeed: 0.1
+  globalBatSpeed: 0.4
   spawningActive: 0
   gameManager: {fileID: 1950931495}
 --- !u!1 &456464982
@@ -7953,7 +7952,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983972950}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &983972952
 Camera:
   m_ObjectHideFlags: 0

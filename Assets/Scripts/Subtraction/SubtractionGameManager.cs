@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -49,6 +50,9 @@ public class SubtractionGameManager : MonoBehaviour
             answerInputField.gameObject.SetActive(true);
         }
 
+        //focus cursor on input field
+        FocusInputField();
+
         //move player to right side of screen and disable movement
         if (Player.Instance != null)
         {
@@ -70,9 +74,17 @@ public class SubtractionGameManager : MonoBehaviour
         GenerateNewQuestion();
 
         //Listen to input field submit
-        if(answerInputField != null)
+        if (answerInputField != null)
         {
             answerInputField.onEndEdit.AddListener(CheckPlayerAnswer);
+        }
+    }
+    
+    private void FocusInputField()
+    {
+        if (answerInputField != null)
+        {
+            answerInputField.ActivateInputField();
         }
     }
 
@@ -91,6 +103,9 @@ public class SubtractionGameManager : MonoBehaviour
     public void OnCorrectAnswer()
     {
         correctAnswers++;
+
+        batSpawner.DecreaseSpawnRate(); //spawn bats faster when correct answer is given!
+        batSpawner.SpawnSingleBat();
 
         if(correctAnswers >= totalToWin && barrelManager.GetRemainingBarrels()>0)
         {
@@ -114,6 +129,9 @@ public class SubtractionGameManager : MonoBehaviour
         }
         //clear input 
         answerInputField.text = "";
+
+        //focus input field
+        FocusInputField();
 
         //generate next question
         GenerateNewQuestion();
