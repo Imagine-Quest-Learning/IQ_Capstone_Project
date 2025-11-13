@@ -15,19 +15,34 @@ public class SubtractionGameManager : MonoBehaviour
 
     [Header("UI References")]
     public GameObject chestPopup;
+    public GameObject winLosePopup;
     public Chest chest;
     public Text questionTextUI;
     public InputField answerInputField;
+    public Text questionsLeftTextUI;
+    public Text feedbackTextUI;
+    public Text winLoseTextUI;
 
     //PRIVATE VARS
     private int currentCorrectAnswer;
     private List<GameObject> batsList = new List<GameObject>(); //to keep track of bat spawning order
     private int correctAnswers = 0;
-    private int totalToWin = 10;
+    private int totalToWin = 3;
+    private bool isWinLosePanelActive = false;
+    private float winLosePopupShownTime;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void Update()
+    {
+        if(isWinLosePanelActive && Input.GetKeyDown(KeyCode.Return) && Time.time - winLosePopupShownTime > 2f)
+        {
+            winLosePopup.SetActive(false);
+            isWinLosePanelActive = false;
+        }
     }
 
     public void StartSubtractionGame()
@@ -44,10 +59,13 @@ public class SubtractionGameManager : MonoBehaviour
         {
             questionTextUI.gameObject.SetActive(true);
         }
-
         if (answerInputField != null)
         {
             answerInputField.gameObject.SetActive(true);
+        }
+        if (questionsLeftTextUI != null)
+        {
+            questionsLeftTextUI.gameObject.SetActive(true);
         }
 
         //focus cursor on input field
@@ -79,12 +97,34 @@ public class SubtractionGameManager : MonoBehaviour
             answerInputField.onEndEdit.AddListener(CheckPlayerAnswer);
         }
     }
-    
+
     private void FocusInputField()
     {
         if (answerInputField != null)
         {
             answerInputField.ActivateInputField();
+        }
+    }
+
+    private void UpdateQuestionsLeftUI()
+    {
+        if (questionsLeftTextUI != null)
+        {
+            int remaining = totalToWin - correctAnswers;
+            questionsLeftTextUI.text = $"{remaining} Left!";
+        }
+    }
+    
+    private IEnumerator ShowCorrectAnswer(string correctAnswer)
+    {
+        if(feedbackTextUI != null)
+        {
+            feedbackTextUI.text = $"{correctAnswer}";
+            feedbackTextUI.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(1f);
+
+            feedbackTextUI.gameObject.SetActive(false);
         }
     }
 
@@ -103,6 +143,7 @@ public class SubtractionGameManager : MonoBehaviour
     public void OnCorrectAnswer()
     {
         correctAnswers++;
+        UpdateQuestionsLeftUI();
 
         batSpawner.DecreaseSpawnRate(); //spawn bats faster when correct answer is given!
         batSpawner.SpawnSingleBat();
@@ -124,6 +165,7 @@ public class SubtractionGameManager : MonoBehaviour
         }
         else
         {
+            StartCoroutine(ShowCorrectAnswer(currentCorrectAnswer.ToString()));
             Debug.Log("Incorrect Answer!");
 
         }
@@ -169,6 +211,7 @@ public class SubtractionGameManager : MonoBehaviour
     {
         Debug.Log("Player WON!");
         EndGame();
+        ShowWinLosePopup(true);
     }
 
     public void OnPlayerLost()
@@ -181,8 +224,20 @@ public class SubtractionGameManager : MonoBehaviour
             chestPopup.SetActive(false);
             chest.EnablePopup();
         }
-
         EndGame();
+        ShowWinLosePopup(false);
+    }
+
+    private void ShowWinLosePopup(bool didWin)
+    {
+        Debug.Log("Method running");
+        if (winLosePopup != null && winLoseTextUI != null)
+        {
+            winLosePopup.SetActive(true);
+            winLoseTextUI.text = didWin ? "Congrats, you've defeated the bats!\n\nLet's keep moving..." : "The bats have defeated you...\n\nLet's try again!";
+            isWinLosePanelActive = true;
+            winLosePopupShownTime = Time.time;
+        }
     }
     
     public void EndGame()
@@ -191,21 +246,14 @@ public class SubtractionGameManager : MonoBehaviour
         Player.Instance.SetCanMove(true);
 
         //disable game components
-        if (questionTextUI != null)
-        {
-            questionTextUI.gameObject.SetActive(false);
-        }
-
-        if (answerInputField != null)
-        {
-            answerInputField.gameObject.SetActive(false);
-        }
+        if (questionTextUI != null) questionTextUI.gameObject.SetActive(false);
+        if (answerInputField != null) answerInputField.gameObject.SetActive(false);
+        if (questionsLeftTextUI != null) questionsLeftTextUI.gameObject.SetActive(false);
+        if (feedbackTextUI != null) feedbackTextUI.gameObject.SetActive(false);
+        
 
         //turn off bat spawner
-        if (batSpawner != null)
-        {
-            batSpawner.StopSpawning();
-        }
+        if (batSpawner != null) batSpawner.StopSpawning();
 
     }
 }
