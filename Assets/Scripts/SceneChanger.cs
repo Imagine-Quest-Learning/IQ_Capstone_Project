@@ -38,6 +38,13 @@ public class SceneChanger : MonoBehaviour
                 return;
             }
 
+            //Check if pre-requisite rooms are complete - NEED TO ADD HERE
+            /*
+            if (sceneToLoad == "Division" && GameManager.Instance != null && !GameManager.Instance.completedRooms.Contains("Multiplication"))
+            {
+                return;
+            }*/
+
             player = collision.transform;
 
             if (!disableFadeAnimation && fadeAnimation != null)

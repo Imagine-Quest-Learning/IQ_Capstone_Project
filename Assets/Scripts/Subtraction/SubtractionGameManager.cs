@@ -217,6 +217,9 @@ public class SubtractionGameManager : MonoBehaviour
         Debug.Log("Player WON!");
         EndGame();
         ShowWinLosePopup(true);
+
+        //mark room completed
+        GameManager.Instance.MarkRoomComplete("Subtraction");
     }
 
     public void OnPlayerLost()
