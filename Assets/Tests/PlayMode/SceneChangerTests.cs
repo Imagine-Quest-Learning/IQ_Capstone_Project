@@ -39,8 +39,8 @@ public class SceneChangerTests
         sceneChanger.fadeTime = 0.1f;
 
         //Disable scene loading and fade animation
-        //sceneChanger.disableSceneLoad = true;
-        //sceneChanger.disableFadeAnimation = true;
+        sceneChanger.disableSceneLoad = true;
+        sceneChanger.disableFadeAnimation = true;
 
         //Add fade animator
         fadeAnimator = triggerObject.AddComponent<Animator>();
@@ -62,7 +62,7 @@ public class SceneChangerTests
 
         //Manually simulate collision
         var collider = triggerObject.GetComponent<Collider2D>();
-        //sceneChanger.OnTriggerEnter2D(player.GetComponent<Collider2D>());
+        sceneChanger.OnTriggerEnter2D(player.GetComponent<Collider2D>());
 
         //Fade animation should play
         Assert.IsNotNull(sceneChanger.fadeAnimation);
