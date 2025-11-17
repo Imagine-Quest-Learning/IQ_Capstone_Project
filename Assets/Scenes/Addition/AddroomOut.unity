@@ -4644,6 +4644,51 @@ MonoBehaviour:
   globalPlayer: {fileID: 0}
   globalCamera: {fileID: 0}
   hideInScenes: []
+--- !u!1 &420725330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 420725332}
+  - component: {fileID: 420725331}
+  m_Layer: 0
+  m_Name: AdditionRoomWinMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &420725331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420725330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56e26880f519664cae92fdc1bd01b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomName: AddRoom
+--- !u!4 &420725332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420725330}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 189.17084, y: 87.719864, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4915,6 +4960,8 @@ MonoBehaviour:
   fadeAnimation: {fileID: 2129806973}
   fadeTime: 1
   newPlayerPosition: {x: 1.041, y: 0.368}
+  disableSceneLoad: 0
+  disableFadeAnimation: 0
 --- !u!61 &1294736045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5686,3 +5733,4 @@ SceneRoots:
   - {fileID: 1636665732}
   - {fileID: 1276226676}
   - {fileID: 1414048853}
+  - {fileID: 420725332}

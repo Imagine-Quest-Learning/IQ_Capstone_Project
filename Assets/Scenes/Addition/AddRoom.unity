@@ -5789,6 +5789,8 @@ MonoBehaviour:
   fadeAnimation: {fileID: 2129806973}
   fadeTime: 1
   newPlayerPosition: {x: 1.041, y: 0.368}
+  disableSceneLoad: 0
+  disableFadeAnimation: 0
 --- !u!61 &1294736045
 BoxCollider2D:
   m_ObjectHideFlags: 0
