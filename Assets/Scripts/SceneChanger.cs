@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 /*
     File: SceneChanger
@@ -21,7 +21,7 @@ public class SceneChanger : MonoBehaviour
     //Needed for testing
     public bool disableSceneLoad = false;
     public bool disableFadeAnimation = false;
-    
+
     /*
         OnTriggerEnter2D
         - Check if player runs into trigger
@@ -38,13 +38,19 @@ public class SceneChanger : MonoBehaviour
                 return;
             }
 
+            //Check if pre-requisite rooms are complete - NEED TO ADD HERE
+            /*
+            if (sceneToLoad == "Division" && GameManager.Instance != null && !GameManager.Instance.completedRooms.Contains("Multiplication"))
+            {
+                return;
+            }*/
+
             player = collision.transform;
 
             if (!disableFadeAnimation && fadeAnimation != null)
             {
                 fadeAnimation.Play("FadeToWhite");
             }
-
             StartCoroutine(DelayFade());
         }
     }
