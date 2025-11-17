@@ -11,6 +11,9 @@ TagManager:
   - Bat
   - ChestPopUp
   - Barrel
+  - Ball
+  - ignoreRange
+  - UsedBall
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - UI
   - Magic
   - Enemy
-  - 
+  - cannonshot
   - 
   - 
   - 

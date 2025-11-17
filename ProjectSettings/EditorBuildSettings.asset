@@ -17,6 +17,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Subtraction.unity
     guid: efb5f7334879a469ea2b06eb4cb7d3b4
+  - enabled: 1
+    path: Assets/Scenes/Addition/AddRoom.unity
+    guid: 92ee8581b741465428e19d1f6a730580
+  - enabled: 1
+    path: Assets/Scenes/Addition/gamepage.unity
+    guid: 06be6f082b2eef64098e96a4f046a557
+  - enabled: 1
+    path: Assets/Scenes/Addition/gamepage 1.unity
+    guid: 4397c6230911cd4468ee02515d6bf27a
+  - enabled: 1
+    path: Assets/Scenes/Addition/gamepage 2.unity
+    guid: 20cf7f0bbf8328743a63d57aa205983d
+  - enabled: 1
+    path: Assets/Scenes/Addition/AddroomOut.unity
+    guid: f911d249555fcaf4aa890cdf4e1ab016
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
