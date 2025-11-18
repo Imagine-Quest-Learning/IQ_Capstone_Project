@@ -97,8 +97,8 @@ public class DivisionAttack : MonoBehaviour
     void NextQuestion(){
 
         //new generated question
-        x = Random.Range(1,15);
-        y = Random.Range(0,15);
+        x = Random.Range(1,13);
+        y = Random.Range(0,13);
         z = x*y;
 
         //update + reset text and question box
