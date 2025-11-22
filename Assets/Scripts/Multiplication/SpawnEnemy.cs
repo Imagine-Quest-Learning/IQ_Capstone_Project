@@ -39,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
         int side = Random.Range(0, 4);
         switch (side)
         {
+            // Add enemies from all sides
             case 0: return new Vector2(Random.Range(-spawnDistance, spawnDistance), spawnDistance);
             case 1: return new Vector2(Random.Range(-spawnDistance, spawnDistance), -spawnDistance);
             case 2: return new Vector2(-spawnDistance, Random.Range(-spawnDistance, spawnDistance));

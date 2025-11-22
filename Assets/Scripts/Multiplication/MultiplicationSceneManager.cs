@@ -32,7 +32,7 @@ public class MultiplicationSceneManager : MonoBehaviour
 
     void Start()
     {
-        instructionsPanel.SetActive(true);
+        instructionsPanel.SetActive(true); // Show instructions panel
         mathPanel.SetActive(false);
         winPanel.SetActive(false);
         losePanel.SetActive(false);
@@ -170,8 +170,10 @@ public class MultiplicationSceneManager : MonoBehaviour
 
     void UpdateUI()
     {
+        // Display score text
         scoreText.text = $"{questions}" + " / 10";
 
+        // Change hearts displayed based on health
         for (int i = 0; i < heartSprites.Length; i++)
         {
             if (i < playerHearts)
@@ -202,6 +204,7 @@ public class MultiplicationSceneManager : MonoBehaviour
 
     void RespawnWand()
     {
+        // Spawn wand in same position
         Vector3 spawnPosition = new Vector3(0f, 0f, 0f);
         Instantiate(wandPrefab, spawnPosition, Quaternion.identity);
     }
@@ -209,6 +212,7 @@ public class MultiplicationSceneManager : MonoBehaviour
     public void ClearAllEnemies()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        // For all enemies that exist right now
         foreach (GameObject enemy in enemies)
         {
             Destroy(enemy);

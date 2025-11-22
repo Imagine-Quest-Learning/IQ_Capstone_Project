@@ -3,17 +3,16 @@ using UnityEngine;
 public class Magic : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
-    private Vector2 direction = Vector2.right; // Default
+    private Vector2 direction = Vector2.right; // Default direction
 
     void Start()
     {
-        // Lifespan
-        Destroy(this.gameObject, 2f);
+        Destroy(this.gameObject, 2f); // Lifespan
     }
 
     public void SetDirection(Vector2 newDirection)
     {
-        direction = newDirection.normalized;
+        direction = newDirection.normalized; // Angle it shoots at
     }
 
     private void Update()
