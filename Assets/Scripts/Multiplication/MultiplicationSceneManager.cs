@@ -24,7 +24,7 @@ public class MultiplicationSceneManager : MonoBehaviour
     public bool isMathActive = false;
     public int minMathInterval = 5;
     public int maxMathInterval = 12;
-    private int questions = 0;
+    public int questions = 0;
     public int playerHearts = 3;
     private int correctAnswer;
 
