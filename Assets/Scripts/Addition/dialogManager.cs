@@ -1,6 +1,7 @@
 using System.Collections;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
     Description: Controls the dialogue UI.
@@ -18,6 +19,8 @@ public class dialogManager : MonoBehaviour
 
     [Header("Typing")]
     public float charInterval = 0.02f;
+
+    public string nextSceneName;
 
     // References and state
     BasicMovement player;
@@ -117,5 +120,6 @@ public class dialogManager : MonoBehaviour
         dialogPanel.SetActive(false);
         if (player) player.SetCanMove(true);
         current = null;
+        SceneManager.LoadScene(nextSceneName);
     }
 }
