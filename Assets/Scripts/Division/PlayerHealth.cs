@@ -17,7 +17,6 @@ public class PlayerHealth : MonoBehaviour
         //removes one of players lives visually
         if (life<1){
             Destroy(hearts[0].gameObject);
-
         }else if (life<2){
             Destroy(hearts[1].gameObject);
         }else if (life<3){
