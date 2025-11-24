@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// controls visuals and logical of golem enemy health
+/* Written by Olivia Jia
+    -> controls visuals and logical of golem enemy health
+*/
 public class Golem : MonoBehaviour
 {
-    public int baseHealth = 100;
+    //initialisation + reference game objects
+    public int baseHealth = 150;
     public int currentHealth;
     public HealthBar healthBar;
 
-    // Start is called before the first frame update
+    //set before the first frame update
     void Start()
     {
         currentHealth = baseHealth;
 		healthBar.SetMaxHealth(baseHealth);
     }
 
+    //logical+visual removal of health
     public void TakeDamage(int damage)
 	{
 		currentHealth -= damage;

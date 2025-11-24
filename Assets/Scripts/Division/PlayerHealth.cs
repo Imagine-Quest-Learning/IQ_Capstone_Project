@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// controls visuals and logical of player health
+/* Written by Olivia Jia
+    -> controls visuals and logical of player health
+*/
 public class PlayerHealth : MonoBehaviour
 {
+    //initialisation + reference game objects
     public GameObject[] hearts;
     public int life;
 
- 
-    // Update is called once per frame
+   //update following every frame
     void Update()
     {
         //removes one of players lives visually
         if (life<1){
             Destroy(hearts[0].gameObject);
-            //set game over
+
         }else if (life<2){
             Destroy(hearts[1].gameObject);
         }else if (life<3){
@@ -23,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    //logical removal of hearts
     public void TakeDamage(int damage)
 	{
 		life -= damage;

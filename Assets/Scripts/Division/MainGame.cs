@@ -4,17 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// Main logic of the game and the question generator/verifyer
+/* Written by Olivia Jia
+    -> Main logic of the game:
+        - Question generator/display/verifyer
+        - Decrease player/golem health
+        - Verify remaining time
+*/
 public class DivisionAttack : MonoBehaviour
 {
+    //init + reference objects
     [SerializeField] InputField answer;
     [SerializeField] Text question;
     public Golem golem;
     public PlayerHealth playerHealth;
-    // public LoseScreenController lose;
     public WinScreenController win;
     public TimerController timer;
-    public float timeMax = 25;
+    public float timeMax = 20;
     float baseAttack = 20;
     int attack;
 
@@ -23,7 +28,7 @@ public class DivisionAttack : MonoBehaviour
     int z; //first term in question
     bool canAnswer = true; // lock/unlock input field for answers
 
-    // Start is called before the first frame update
+    //set before the first frame update
     void Start()
     {
        answer.Select();
@@ -31,7 +36,7 @@ public class DivisionAttack : MonoBehaviour
        NextQuestion();
     }
 
-    // Update is called once per frame
+    //update following every frame
     void Update()
     {
         if (timer.timeRemaining <= 0 && canAnswer)
@@ -40,7 +45,7 @@ public class DivisionAttack : MonoBehaviour
             canAnswer = false;
             playerHealth.TakeDamage(1);
 
-            //Check if player lost and display game over screen if they did
+            //Check if player lost and switch to main hall if they did
             if (playerHealth.life<=0){
                 GameOver();
                 return;
@@ -51,6 +56,7 @@ public class DivisionAttack : MonoBehaviour
                 return;
             }           
         }
+        //Capture/verify answers
         if (Input.GetKeyDown(KeyCode.Return) && canAnswer)
 		{
 		    CheckAnswer(); 
@@ -87,6 +93,7 @@ public class DivisionAttack : MonoBehaviour
                 return;
             }
             
+            //change color text for incorrect answer
             question.color = Color.red;    
             answer.text = "";
             answer.Select();

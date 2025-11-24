@@ -3,6 +3,9 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+/* Written by Olivia Jia
+    -> Testing win screen script
+*/
 public class DivisionWinScreenControllerPlayModeTests
 {
     private GameObject testObject;
