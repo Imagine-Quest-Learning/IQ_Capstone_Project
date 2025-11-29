@@ -43,7 +43,8 @@ public class DivisionPlayerHealthPlayModeTest
     public IEnumerator Heart2_Destroyed_When_Life_Decreases_To_2()
     {
         playerHealth.TakeDamage(1); // life = 2
-        yield return new WaitForEndOfFrame(); // let Update() run
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(5f); // let Update() run
         yield return null;
 
         Assert.IsTrue(playerHealth.hearts[2] == null ||playerHealth.hearts[2].Equals(null),"Heart 2 isn't destroyed after life=2");
@@ -53,9 +54,11 @@ public class DivisionPlayerHealthPlayModeTest
     public IEnumerator Heart1_Destroyed_When_Life_Decreases_To_1()
     {
         playerHealth.TakeDamage(1); // life = 2
-        yield return new WaitForEndOfFrame(); // let Update() run
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(5f); // let Update() run
         playerHealth.TakeDamage(1); // life = 1
-        yield return new WaitForEndOfFrame(); // let Update() run
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(5f); // let Update() run
         yield return null;
 
         Assert.IsTrue(playerHealth.hearts[1] == null ||playerHealth.hearts[1].Equals(null),"Heart 1 isn't destroyed after life=1");
@@ -65,11 +68,14 @@ public class DivisionPlayerHealthPlayModeTest
     public IEnumerator Heart0_Destroyed_When_Life_Decreases_To_0()
     {
         playerHealth.TakeDamage(1); // life = 2
-        yield return new WaitForEndOfFrame(); // let Update() run
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(5f); // let Update() run
         playerHealth.TakeDamage(1); // life = 1
-        yield return new WaitForEndOfFrame(); // let Update() run
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(5f); // let Update() run
         playerHealth.TakeDamage(1); // life = 0
-        yield return new WaitForEndOfFrame(); // let Update() run
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(5f); // let Update() run
         yield return null;
 
         Assert.IsTrue(playerHealth.hearts[0] == null ||playerHealth.hearts[0].Equals(null),"Heart 0 isn't destroyed after life=0");

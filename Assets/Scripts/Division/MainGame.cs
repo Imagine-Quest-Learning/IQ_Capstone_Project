@@ -19,7 +19,7 @@ public class DivisionAttack : MonoBehaviour
     public PlayerHealth playerHealth;
     public WinScreenController win;
     public TimerController timer;
-    public float timeMax = 20;
+    public float timeMax = 10;
     float baseAttack = 20;
     int attack;
 
