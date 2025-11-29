@@ -123,7 +123,7 @@ public class DivisionAttack : MonoBehaviour
 
     void GameOver(){
         canAnswer = false;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 
     void GameWin(){
