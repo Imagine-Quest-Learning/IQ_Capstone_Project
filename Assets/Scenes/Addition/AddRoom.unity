@@ -4743,11 +4743,14 @@ MonoBehaviour:
     speaker: Anna
     lines:
     - Hello, traveller!
-    - "If you want to clear this stage, you\u2019ll need to collect all three pieces
-      of the golden key."
-    - Do that successfully, and a piece of the key will be yours!
-    - "Once you\u2019ve gathered all the pieces, you can forge the golden key and
-      unlock the way."
+    - This is a magic mirror table. Inside the mirror is a special world.
+    - If you want to pass this room, you must go into the mirror world and beat its
+      challenges to find a golden key.
+    - In the mirror world, read the question on the board and shoot the soldier with
+      the correct answer.
+    - Use your mouse or finger to aim the cannon, then tap or click to fire!
+    - Hit the right soldier and you win! The golden key will be yours, and it will
+      help go on to your next adventure!
 --- !u!4 &504232199
 Transform:
   m_ObjectHideFlags: 0
@@ -5364,6 +5367,7 @@ MonoBehaviour:
   bodyText: {fileID: 698164536}
   continueHint: {fileID: 0}
   charInterval: 0.02
+  nextSceneName: 
 --- !u!1 &1033849118
 GameObject:
   m_ObjectHideFlags: 0

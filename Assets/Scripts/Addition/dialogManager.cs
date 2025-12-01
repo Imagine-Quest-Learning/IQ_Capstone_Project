@@ -120,6 +120,10 @@ public class dialogManager : MonoBehaviour
         dialogPanel.SetActive(false);
         if (player) player.SetCanMove(true);
         current = null;
-        SceneManager.LoadScene(nextSceneName);
+        if (nextSceneName == "MainHall")
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else{ return; }
     }
 }
