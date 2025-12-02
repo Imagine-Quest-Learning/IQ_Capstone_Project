@@ -59,6 +59,13 @@ public class MultiplicationSceneManager : MonoBehaviour
         }
     }
 
+    IEnumerator ActivateInputNextFrame()
+    {
+        yield return null;
+        answerInput.Select();
+        answerInput.ActivateInputField();
+    }
+
 
     IEnumerator MathQuestionTimer()
     {
@@ -83,6 +90,7 @@ public class MultiplicationSceneManager : MonoBehaviour
         GenerateMathProblem();
         answerInput.text = "";
         answerInput.Select();
+        StartCoroutine(ActivateInputNextFrame());
     }
 
 
@@ -127,6 +135,7 @@ public class MultiplicationSceneManager : MonoBehaviour
         }
         // Reset question input field after submitting
         answerInput.text = "";
+        StartCoroutine(ActivateInputNextFrame());
     }
 
     void CheckAnswerOnEnter()
