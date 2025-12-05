@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BasicMovement : MonoBehaviour
+public class BasicMovementADD : MonoBehaviour
 {
     public float speed = 1f;
     public bool canMove = true;
