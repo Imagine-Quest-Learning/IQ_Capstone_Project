@@ -76,7 +76,13 @@ Multiplication.unity
   * The scene that loads if the player enter the third door from left in the Main Hall.
 
 Development Information
-
+  * All scripts for this room found under Assets/Scripts/Multiplication
+  * Enemy.cs: Handles enemy movement and collision logic
+  * Magic.cs: Handles magic behaviour (fired from the wand) including direction and collision logic, associated with the magic prefab
+  * ‎MultiplicationPlayerController.cs: Handles player logic including shooting and movement
+  * MultiplicationSceneManager.cs: Handles the core game logic once the player starts the game
+  * SpawnEnemy.cs: Handles spawning ghost (enemy) prefabs in the scene
+  * Weapon.cs: Handles the weapon logic, associated with the weapon prefab
 ```
 ### Division Boss Battle 
 ```
