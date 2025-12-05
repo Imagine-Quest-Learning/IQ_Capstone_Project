@@ -68,6 +68,23 @@ Scenes found under Assets/Scenes/Addition/...
   * The scene that loads if the player enters the middle room in the Main Hall.
 
 Development Information
+  * All scripts for this room found under Assets/Scripts/Addition
+  * AdditionRoomWinMarker.cs: When the player reaches the AddRoomOut scene, marks the Addition room as completed in the GameManager.
+  * AutoDialogue.cs: Helper for dialogManager.cs that automatically feeds dialogue text into the dialogue system when the scene starts.
+  * CannonController.cs: Controls cannon aiming, power, and firing behavior on the game page.
+  * DialogAutoReturnSimple.cs: Simple timer used on the game page that can optionally replay the current scene a chosen number of times before moving on.
+  * FadeController.cs: Controls a simple black-screen fade-in/fade-out effect for scene transitions.
+  * FloatAnimationGamePage.cs: Adds a slow rotation and floating animation to 'key' on the game page.
+  * FloatingKeyFollower.cs: Makes the golden key follow a target with a small offset and bobbing animation.
+  * GlobalVisibilityController.cs: Toggles the global Player and Camera objects on or off depending on the active scene to avoid camera conflicts.
+  * Music1Manager.cs: Manages background music persistence between scenes and destroys duplicate music objects when necessary.
+  * QABoardManager.cs: Manages question generation, answer checking, and related UI interactions on the answer board in the game page.
+  * ScenePortal.cs: Handles the table trigger logic in AddRoom that moves the player into the main addition game scene.
+  * ShieldAnswer.cs: Displays a random answer number on the soldier’s shield on the game page.
+  * UIFollowTarget.cs: Makes a UI element follow a moving target (soldier) on the game page.
+  * dialogManager.cs: Controls the dialogue UI, showing dialogue text line by line and waiting for player input (Space / Enter) to continue.
+  * enemywalk.cs: Controls an enemy walking back and forth between two points.
+  * soldierDestroy.cs: Handles soldier health, collision with the cannonball, and answer checking.
 
 ```
 ### Multiplication Room
