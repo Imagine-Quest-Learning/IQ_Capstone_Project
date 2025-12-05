@@ -3,7 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-// Manages question generation, answer checking, and UI interaction in the gamepage
+/*
+    Description: Manages question generation, answer checking, and UI interaction in the gamepage.
+*/
 public class QABoardManager : MonoBehaviour
 {
     [Header("Question Settings")]

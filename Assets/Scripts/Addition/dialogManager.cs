@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 /*
     Description: Controls the dialogue UI.
-                 Types out lines one by one, waits for player input
-                 (Space / Enter), and locks/unlocks player movement.
+                 Types out lines one by one, waits for player input(Space).
 */
 
 public class dialogManager : MonoBehaviour
@@ -23,7 +22,7 @@ public class dialogManager : MonoBehaviour
     public string nextSceneName;
 
     // References and state
-    BasicMovement player;
+    BasicMovementADD player;
     Dialogue current;
     int index;
     bool isTyping;
@@ -32,7 +31,7 @@ public class dialogManager : MonoBehaviour
     void Awake()
     {
         // Find the player once and hide dialogue UI at start
-        player = FindFirstObjectByType<BasicMovement>();
+        player = FindFirstObjectByType<BasicMovementADD>();
         if (dialogPanel) dialogPanel.SetActive(false);
         if (continueHint) continueHint.SetActive(false);
     }

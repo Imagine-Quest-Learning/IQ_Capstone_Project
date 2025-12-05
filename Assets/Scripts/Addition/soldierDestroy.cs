@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-// Handles soldier health, collision with cannonball, explosion, and answer checking
+/*
+    Description: Handles soldier health, collision with cannonball, 
+                 explosion, and answer checking.
+*/
 public class soldierDestroy : MonoBehaviour
 {
     [Header("HP Settings")]

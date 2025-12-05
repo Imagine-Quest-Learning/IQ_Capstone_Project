@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+/*
+    Description: Controls a simple black-screen fade effect for scene transitions in Addition Room.
+*/
 public class FadeController : MonoBehaviour
 {
     public Image fadeImage;

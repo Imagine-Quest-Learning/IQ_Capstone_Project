@@ -1,7 +1,9 @@
 using UnityEngine;
 using TMPro;
 
-// Handles displaying the answer number on the soldier's shield
+/*
+    Description: Displays the answer number on the soldier's shield.
+*/
 public class ShieldAnswer : MonoBehaviour
 {
     public int answer = 0; // The number assigned to this soldier

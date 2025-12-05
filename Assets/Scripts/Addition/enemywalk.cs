@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
-// Script to control an enemy walking back and forth between two points
+/*
+    Description: Controls an enemy walking back and forth between two points.
+*/
 public class enemywalk : MonoBehaviour
 {
     public GameObject pointA;

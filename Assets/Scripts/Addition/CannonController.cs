@@ -1,6 +1,9 @@
 using UnityEngine;
 
-// Controls the cannon behavior on the game page
+/*
+    Description: Controls the cannon behavior on the game page,
+                 including aiming, firing, and trajectory prediction.
+*/
 public class CannonController : MonoBehaviour
 {
     // Direction vector from the cannon to the mouse
