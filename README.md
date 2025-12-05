@@ -84,7 +84,13 @@ Division.unity
   * The scene that loads if the player enter collides with the trigger on the far right of the Main Hall
 
 Development Information
-
+  * All scripts for this room found under Assets/Scripts/Division
+  * MainGame.cs: Manages all the game logic for the room (generating/verifying questions, deducting player/golem health, etc.)
+  * WinScreenController.cs: Controller to activate "win" screen
+  * TimerController.cs: Script attached to the timer on the bottom of the question box to reset and count down the time (visual + logical)
+  * PlayerHealth.cs: Script attached to the "Hearts" game object (in the Division.unity scene) with the functions to set/delete player's hearts (visual + logical)
+  * HealthBar.cs: General health bar script that is attached to the golem with the functions to set/remove golem's health (visual + logical)
+  * Golem.cs: Calls upon HealthBar.cs functions to set/remove the golem's health (logical)
 ```
 ## Setting Up Testing Locally 
 
